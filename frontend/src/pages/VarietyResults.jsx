@@ -1,10 +1,9 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { jsPDF } from "jspdf";
 
 const VarietyResult = () => {
   const { state } = useLocation();
-  const { district, ageGroup, paddyVarieties } = state || {};
+  const { district, ageGroup, riceVarieties } = state || {};
 
   // Function to download the PDF
   const downloadPDF = () => {
@@ -23,7 +22,7 @@ const VarietyResult = () => {
     doc.setFont(titleFont, "bold");
     doc.setFontSize(titleFontSize);
     doc.text(
-      `Paddy Variety Suggestions for ${district} - Age Group: ${ageGroup}`,
+      `rice Variety Suggestions for ${district} - Age Group: ${ageGroup}`,
       margin,
       margin
     );
@@ -36,8 +35,8 @@ const VarietyResult = () => {
     // Add some spacing
     let yPosition = margin + 10;
   
-    // Loop through paddy varieties and display them in a more modern layout
-    paddyVarieties.forEach((variety, index) => {
+    // Loop through rice varieties and display them in a more modern layout
+    riceVarieties.forEach((variety, index) => {
       // Set text style for variety
       doc.setFont("helvetica", "normal");
       doc.setFontSize(textFontSize);
@@ -63,22 +62,22 @@ const VarietyResult = () => {
     doc.setFontSize(footerFontSize);
   
     // Save the PDF with a dynamic filename based on district and age group
-    doc.save(`paddy_varieties_${district}_${ageGroup}.pdf`);
+    doc.save(`rice_varieties_${district}_${ageGroup}.pdf`);
   };
   
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      <div className="flex flex-grow items-center justify-center py-8 px-4 bg-cover bg-center bg-gray-400">
+    <div className="min-h-screen flex flex-col" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1584773920278-4ada215dbe93?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')` }}>
+      <div className="flex flex-grow items-center justify-center py-8 px-4 bg-cover bg-center">
         <div className="bg-black bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-lg">
           {/* Header Text */}
           <h2 className="text-2xl text-center font-semibold text-white mb-4">
-            Best-suited Paddy Varieties for {district} under {ageGroup}
+            Best-suited rice Varieties for {district} under {ageGroup}
           </h2>
 
           <div className="flex flex-wrap justify-center gap-4 mb-6">
-            {paddyVarieties.length > 0 ? (
-              paddyVarieties.map((variety, index) => (
+            {riceVarieties.length > 0 ? (
+              riceVarieties.map((variety, index) => (
                 <div
                   key={index}
                   className="flex-1 min-w-[30%] bg-green-500 text-white p-4 rounded-lg shadow-md text-center"

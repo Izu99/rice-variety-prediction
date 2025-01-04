@@ -1,6 +1,8 @@
-import pickle
+import joblib
+import os
 
-with open("app/train_model/variety_model.pkl", "rb") as file:
-    variety_model = pickle.load(file)
-
-print(type(variety_model))
+def load_model(model_path: str):
+    if os.path.exists(model_path):
+        return joblib.load(model_path)
+    else:
+        raise FileNotFoundError(f"Model file not found at {model_path}")

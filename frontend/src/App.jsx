@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PaddyVarietyForm from './pages/PaddyInputPage';
 import VarietyResult from './pages/VarietyResults';

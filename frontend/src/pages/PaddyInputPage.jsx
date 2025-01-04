@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const getPaddyVarieties = async (province, district, ageGroup) => {
-  const response = await fetch('http://127.0.0.1:8000/paddy-variety/get-varieties', {
+const getRiceVarieties = async (province, district, ageGroup) => {
+  const response = await fetch('http://127.0.0.1:8000/rice-variety/get-varieties', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,14 +16,14 @@ const getPaddyVarieties = async (province, district, ageGroup) => {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to fetch paddy varieties');
+    throw new Error('Failed to fetch rice varieties');
   }
 
   const data = await response.json();
-  return data.paddy_varieties;
+  return data.rice_varieties;
 };
 
-const PaddyVarietyForm = () => {
+const RiceVarietyForm = () => {
   const [province, setProvince] = useState('');
   const [district, setDistrict] = useState('');
   const [ageGroup, setAgeGroup] = useState('');
@@ -65,11 +65,11 @@ const PaddyVarietyForm = () => {
     setLoading(true);
   
     try {
-      const varieties = await getPaddyVarieties(province, district, ageGroup);
-      navigate('/result', { state: { paddyVarieties: varieties, district, ageGroup } });
+      const varieties = await getRiceVarieties(province, district, ageGroup);
+      navigate('/result', { state: { riceVarieties: varieties, district, ageGroup } });
     } catch (error) {
-      console.error('Error fetching paddy varieties:', error);
-      alert('Error fetching paddy varieties');
+      console.error('Error fetching rice varieties:', error);
+      alert('Error fetching rice varieties');
     } finally {
       setLoading(false);
     }
@@ -81,7 +81,7 @@ const PaddyVarietyForm = () => {
       <div className="min-h-screen flex flex-col bg-gray-100">
         <div className="flex pt-40 flex-grow items-center justify-center py-8 px-4 bg-cover bg-center bg-gray-800">
           <div className="bg-black bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-lg">
-            <h2 className="text-2xl font-semibold text-white mb-4">Find Paddy Varieties</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4">Find Rice Varieties</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="province" className="block text-sm font-medium text-white">
@@ -149,4 +149,4 @@ const PaddyVarietyForm = () => {
   );
 };
 
-export default PaddyVarietyForm;
+export default RiceVarietyForm;
