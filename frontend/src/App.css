@@ -4,3 +4,27 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
+/* Ensure your map container has a proper display */
+.map-container {
+  text-align: center;
+}
+
+.map-container img {
+  width: 10% /* Adjust as needed */
+}
+
+/* Style for the SVG paths */
+.map {
+  fill: #cccccc; /* Light gray color for districts */
+  stroke: #333333; /* Darker gray for district borders */
+  stroke-width: 1px;
+}
+
+svg path:hover {
+  fill: #ffcc00; /* Color change on hover, if needed */
+}
+
+
+
+
+

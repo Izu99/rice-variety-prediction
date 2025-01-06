@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes.rice_recommendation import router as rice_recommendation_router
+from app.routes.rice_details_route import router as rice_details_route
 from app.utils.database import engine, Base
 
 # Initialize database tables
@@ -19,7 +20,8 @@ app.add_middleware(
 )
 
 # Add routes
-app.include_router(rice_recommendation_router, prefix="/rice-variety", tags=["rice Variety"])
+app.include_router(rice_recommendation_router, prefix="/rice-variety", tags=["rice Variety-API"])
+app.include_router(rice_details_route, prefix="/rice-details", tags=["rice Details"])
 
 # Run app on port 8000
 # Command: `uvicorn app.main:app --reload`

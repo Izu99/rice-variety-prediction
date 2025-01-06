@@ -1,7 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import VarietyDetails from './pages/VarietyDetails';
+import VarietyPredictionHome from './pages/VarietyPredictionHome';
 import PaddyVarietyForm from './pages/PaddyInputPage';
 import VarietyResult from './pages/VarietyResults';
-import VarietyPredictionHome from './pages/VarietyPredictionHome';
+import RiceVarietiesPage from './pages/Varieties';
+import RiceVarietyMap from './pages/RiceVarietyMap';
 import './App.css'
 
 function App() {
@@ -11,6 +14,9 @@ function App() {
         <Route path="/" element={<VarietyPredictionHome />} />
         <Route path="/variety-input" element={<PaddyVarietyForm />} />
         <Route path="/result" element={<VarietyResult />} />
+        <Route path="/variety-details/:varietyName" element={<VarietyDetails />} />
+        <Route path="/varieties" element={<RiceVarietiesPage />} />
+        <Route path="/map" element={<RiceVarietyMap />} />
       </Routes>
     </Router>
   );
